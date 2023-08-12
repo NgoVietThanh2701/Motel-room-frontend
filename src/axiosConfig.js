@@ -6,12 +6,21 @@ const instance = axios.create({
 
 instance.interceptors.request.use(function (config) {
    /* Do something before is request sent */
+   /* Add token in header */
    const token = localStorage.getItem('persist:auth')
    return config;
 }, function (error) {
    /* Do something with request error */
-   console.log(error);
    return Promise.reject(error)
 })
+
+instance.interceptors.response.use(function (response) {
+   /* Any status code that lie within the range of 2xx cause this function to trigger
+   Do something with response data  */
+   /* refresh token */
+   return response;
+}, function (error) {
+   return Promise.reject(error);
+});
 
 export default instance
