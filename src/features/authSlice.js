@@ -8,7 +8,7 @@ const initState = {
    update: false
 }
 
-export const register = createAsyncThunk("user/register", async (dataRegistry, thunkAPI) => {
+export const register = createAsyncThunk("auth/register", async (dataRegistry, thunkAPI) => {
    try {
       const response = await axiosConfig({
          method: 'POST',
@@ -25,7 +25,7 @@ export const register = createAsyncThunk("user/register", async (dataRegistry, t
 })
 
 /*createAsyncThunk(): create async action*/
-export const login = createAsyncThunk("user/login", async (dataLogin, thunkAPI) => {
+export const login = createAsyncThunk("auth/login", async (dataLogin, thunkAPI) => {
    try {
       const response = await axiosConfig({
          method: 'POST',

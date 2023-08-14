@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, InputForm } from '../../components';
+import { Button, InputForm } from '../../../conponentItems';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { register, login } from '../../features/authSlice';
+import { register, login } from '../../../features/authSlice';
 import Swal from 'sweetalert2';
 
 const Login = () => {
