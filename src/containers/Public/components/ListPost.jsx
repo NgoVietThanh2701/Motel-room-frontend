@@ -1,21 +1,34 @@
 import React, { useEffect } from 'react'
-import { Button, Item } from '../../../conponentItems'
+import { Button, ItemPost } from '../../../conponentItems'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPosts } from '../../../features/postSlice'
+import { getPostsLimit } from '../../../features/postSlice'
+import { useSearchParams } from 'react-router-dom'
 
-const ListPost = () => {
+const ListPost = ({ categoryCode }) => {
 
+   const [searchParams] = useSearchParams()
    const dispatch = useDispatch()
-   const { posts } = useSelector(state => state.post)
+   const { posts, count } = useSelector(state => state.post)
 
    useEffect(() => {
-      dispatch(getPosts())
-   }, [dispatch])
+      let params = []
+      for (let entry of searchParams.entries()) {
+         params.push(entry)
+      }
+      let searchParamsObj = {}
+      params?.map(i => (
+         searchParamsObj = { ...searchParamsObj, [i[0]]: i[1] }
+      ))
+      if (categoryCode) {
+         searchParamsObj.categoryCode = categoryCode
+      }
+      dispatch(getPostsLimit(searchParamsObj))
+   }, [dispatch, searchParams, categoryCode])
 
    return (
-      <div className='rounded-md py-3 bg-white shadow-md flex flex-col gap-3'>
-         <h4 className='text-[20px] px-4 font-semibold text-color_333'>
-            Danh sách tin đăng
+      <div className='rounded-lg border border-default py-3 bg-white flex flex-col gap-3'>
+         <h4 className='text-[22px] px-4 font-bold text-color_333 opacity-95'>
+            {count} tin cho thuê tại Phongtro123.com
          </h4>
          <div className='px-4 flex items-center gap-[5px]'>
             <span className='text-[14px]'>Sắp xếp:</span>
@@ -25,7 +38,7 @@ const ListPost = () => {
          </div>
          <div className='items'>
             {posts?.length > 0 && posts.map((item, index) => (
-               <Item
+               <ItemPost
                   key={index}
                   address={item?.address}
                   attributes={item?.attributes}
@@ -35,8 +48,8 @@ const ListPost = () => {
                   title={item?.title}
                   user={item?.user}
                   countImage={JSON.parse(item?.images.image).length}
+                  id={item?.id}
                />
-
             ))}
          </div>
       </div>

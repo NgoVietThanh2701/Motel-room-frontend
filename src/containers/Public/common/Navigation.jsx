@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { apiGetCategories } from '../../../services/categorieServices'
-import { convertStringtoURL } from '../../../utils/Common/formatStringtoURL'
+import { convertStringtoURL } from '../../../utils/function'
+import { getCategories } from '../../../features/appSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Navigation = () => {
 
-   const [categories, setCategories] = useState([])
-
-   /* fetch category */
-   async function fetchCategories() {
-      const response = await apiGetCategories()
-      if (!response?.data.err) {
-         setCategories(response.data.response)
-      }
-   }
+   const dispatch = useDispatch();
+   const { categories } = useSelector(state => state.app)
 
    useEffect(() => {
-      fetchCategories()
-   }, [])
+      dispatch(getCategories())
+   }, [dispatch])
 
    return (
       <div className='w-full h-[40px] flex justify-center items-center bg-bg_blue1 text-white'>

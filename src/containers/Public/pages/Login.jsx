@@ -89,7 +89,7 @@ const Login = () => {
 
    return (
       <div className='bg-white w-[600px] p-[30px] pb-[100px] rounded-sm shadow-sm'>
-         <h3 className='font-bold text-3xl mb-3 text-color_333'>{isRegister ? 'Đăng ký tài khoản' : 'Đăng nhập'}</h3>
+         <h3 className='font-bold text-3xl mb-3 text-color_222'>{isRegister ? 'Đăng ký tài khoản' : 'Đăng nhập'}</h3>
          <div className='w-full flex flex-col gap-4'>
             {isRegister &&
                <InputForm

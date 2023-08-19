@@ -1,16 +1,20 @@
 import React, { memo, useState } from 'react'
 import icons from '../utils/icons'
 import avatarDefault from '../assets/avatar-default.jpg'
+import { Link } from 'react-router-dom'
+import { convertStringtoURL } from '../utils/function'
 
 const { BsHeart, BsHeartFill, FaStar } = icons
 
-const Item = ({ user, title, star, description, attributes, address, image, countImage, }) => {
+const Item = ({ user, title, star, description, attributes, address, image, countImage, id }) => {
 
    const [isClicked, setIsClicked] = useState(false)
 
    return (
-      <div className='bg-bg_primary px-4 py-2 flex gap-2 border-t border-orange-600'>
-         <div className='w-2/5 h-[240px] py-2 relative cursor-pointer'>
+      <div className='px-4 py-2 flex gap-2 border-t border-orange-600'>
+         <Link
+            to={`chi-tiet/${convertStringtoURL(title)}/${id}`}
+            className='w-2/5 h-[240px] py-2 relative cursor-pointer'>
             <img src={image} alt="" className='w-full h-full object-cover' />
             <span className='bg-bg_overlay60 absolute left-2 bottom-4 text-white px-1 text-[14px] rounded-sm'>
                {countImage} ảnh
@@ -20,14 +24,12 @@ const Item = ({ user, title, star, description, attributes, address, image, coun
                className='absolute right-4 bottom-4 text-white'>
                {isClicked ? <BsHeartFill size={20} color='#E13427' /> : <BsHeart size={20} />}
             </button>
-         </div>
+         </Link>
          <div className='w-3/5 pl-2'>
             <div className='line-clamp-2'>
-               <FaStar size={13.8} className='inline-block mb-[3px]' color='#e6e600' />
-               <FaStar size={13.8} className='inline-block mb-[3px]' color='#e6e600' />
-               <FaStar size={13.8} className='inline-block mb-[3px]' color='#e6e600' />
-               <FaStar size={13.8} className='inline-block mb-[3px]' color='#e6e600' />
-               <FaStar size={13.8} className='inline-block mb-[3px]' color='#e6e600' />
+               {Array.from({ length: star }, (value, index) => (
+                  <FaStar key={index} size={13.8} className='inline-block mb-[3px]' color='#e6e600' />
+               ))}
                <h3 className='inline pl-[6px] text-color_red font-bold text-[15px]'>
                   {title}
                </h3>

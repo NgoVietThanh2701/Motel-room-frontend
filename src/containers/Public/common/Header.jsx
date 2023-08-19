@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import logo from '../../../assets/logo.png';
 import { Button } from '../../../conponentItems'
 import icons from '../../../utils/icons.js'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { path } from '../../../utils/constant.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { resetAuth } from '../../../features/authSlice';
@@ -12,6 +12,9 @@ const { PiPlusCircle } = icons
 const Header = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch()
+   const headerRef = useRef()
+   const [searchParams] = useSearchParams()
+   let page = searchParams.get('page')
    const { isLoggedIn } = useSelector(state => state.auth)
 
    /* */
@@ -23,9 +26,14 @@ const Header = () => {
       dispatch(resetAuth())
    }, [dispatch])
 
+   /* move view to start component */
+   useEffect(() => {
+      headerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+   }, [page])
+
 
    return (
-      <div className='w-5/7 flex items-center justify-between'>
+      <div ref={headerRef} className='w-5/7 flex items-center justify-between'>
          <Link to={'/'}>
             <img src={logo} alt='logo' className='w-[240px] h-[70px] object-contain' />
          </Link>

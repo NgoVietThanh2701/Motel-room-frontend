@@ -1,4 +1,4 @@
-import axiosConfig from '../axiosConfig'
+import axiosConfig from '../config/axiosConfig'
 
 export const apiGetCategories = () => new Promise(async (resolve, reject) => {
    try {

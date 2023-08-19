@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.line-clamp-3 {
+/*.line-clamp-3 {
    -webkit-line-clamp: 3;
-   /* Số dòng tối đa để hiển thị */
    display: -webkit-box;
    -webkit-box-orient: vertical;
    overflow: hidden;
@@ -12,7 +11,6 @@
 
 .line-clamp-2 {
    -webkit-line-clamp: 2;
-   /* Số dòng tối đa để hiển thị */
    display: -webkit-box;
    -webkit-box-orient: vertical;
    overflow: hidden;
@@ -20,8 +18,8 @@
 
 .line-clamp-1 {
    -webkit-line-clamp: 1;
-   /* Số dòng tối đa để hiển thị */
    display: -webkit-box;
    -webkit-box-orient: vertical;
    overflow: hidden;
-}
+} 
+*/

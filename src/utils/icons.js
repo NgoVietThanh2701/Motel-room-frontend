@@ -1,11 +1,12 @@
 import { PiPlusCircle } from 'react-icons/pi'
 import { BsChevronRight, BsHeart, BsHeartFill } from 'react-icons/bs'
-import { GoLocation } from 'react-icons/go'
+import { GoLocation, GoArrowLeft } from 'react-icons/go'
 import { IoMdCrop } from 'react-icons/io'
 import { RiMoneyPoundBoxLine } from 'react-icons/ri'
 import { LiaHouseDamageSolid } from 'react-icons/lia'
 import { FiSearch } from 'react-icons/fi'
 import { FaStar } from 'react-icons/fa'
+import { MdOutlineLastPage, MdOutlineFirstPage } from 'react-icons/md'
 
 const icons = {
    PiPlusCircle,
@@ -17,7 +18,10 @@ const icons = {
    FiSearch,
    BsHeart,
    BsHeartFill,
-   FaStar
+   FaStar,
+   MdOutlineLastPage,
+   MdOutlineFirstPage,
+   GoArrowLeft
 }
 
 export default icons

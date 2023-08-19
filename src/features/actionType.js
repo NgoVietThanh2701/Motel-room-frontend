@@ -1,0 +1,14 @@
+export const action = {
+   AUTH_LOGIN: 'auth/login',
+   AUTH_REGISTER: 'auth/register',
+   APP_GET_CATEGORIES: 'app/getCategories',
+   APP_GET_PRICES: 'app/getPrices',
+   APP_GET_AREAS: 'app/getAreas',
+   APP_GET_PROVINCES: 'app/getProvinces',
+   POST_GET: 'posts/get',
+   POST_GET_LIMIT: 'posts/getLimit',
+   POST_GET_NEW: 'posts/getNew',
+}
+
+
+

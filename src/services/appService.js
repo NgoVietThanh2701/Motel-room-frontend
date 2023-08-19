@@ -1,38 +1,37 @@
 import axiosConfig from '../config/axiosConfig'
 
-export const apiGetPosts = () => new Promise(async (resolve, rejcet) => {
+export const apiGetPrices = () => new Promise(async (resolve, reject) => {
    try {
       const response = await axiosConfig({
          method: 'GET',
-         url: '/api/v1/post/all'
+         url: '/api/v1/price/all'
       })
       resolve(response)
    } catch (error) {
-      rejcet(error)
+      reject(error)
    }
 })
 
-export const apiGetPostsLimit = (query) => new Promise(async (resolve, rejcet) => {
+export const apiGetAreas = () => new Promise(async (resolve, reject) => {
    try {
       const response = await axiosConfig({
          method: 'GET',
-         url: `/api/v1/post/limit`,
-         params: query
+         url: '/api/v1/area/all'
       })
       resolve(response)
    } catch (error) {
-      rejcet(error)
+      reject(error)
    }
 })
 
-export const apiGetNewPosts = () => new Promise(async (resolve, rejcet) => {
+export const apiGetProvinces = () => new Promise(async (resolve, reject) => {
    try {
       const response = await axiosConfig({
          method: 'GET',
-         url: `/api/v1/post/new-post`,
+         url: '/api/v1/province/all'
       })
       resolve(response)
    } catch (error) {
-      rejcet(error)
+      reject(error)
    }
 })

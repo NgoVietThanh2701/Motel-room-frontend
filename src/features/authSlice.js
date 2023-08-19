@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosConfig from '../axiosConfig'
+import { action } from './actionType'
+import { apiRegister, apiLogin } from "../services/authService";
 
 const initState = {
    isLoggedIn: false,
@@ -8,36 +9,22 @@ const initState = {
    update: false
 }
 
-export const register = createAsyncThunk("auth/register", async (dataRegistry, thunkAPI) => {
+export const register = createAsyncThunk(action.AUTH_REGISTER, async (dataRegistry, thunkAPI) => {
    try {
-      const response = await axiosConfig({
-         method: 'POST',
-         url: '/api/v1/auth/register',
-         data: dataRegistry
-      });
+      const response = await apiRegister(dataRegistry)
       return response.data
    } catch (error) {
-      if (error.response) {
-         const message = error.response.data.msg;
-         return thunkAPI.rejectWithValue(message);
-      }
+      return thunkAPI.rejectWithValue(error.message);
    }
 })
 
 /*createAsyncThunk(): create async action*/
-export const login = createAsyncThunk("auth/login", async (dataLogin, thunkAPI) => {
+export const login = createAsyncThunk(action.AUTH_LOGIN, async (dataLogin, thunkAPI) => {
    try {
-      const response = await axiosConfig({
-         method: 'POST',
-         url: '/api/v1/auth/login',
-         data: dataLogin
-      });
+      const response = await apiLogin(dataLogin)
       return response.data
    } catch (error) {
-      if (error.response) {
-         const message = error.response.data.msg;
-         return thunkAPI.rejectWithValue(message);
-      }
+      return thunkAPI.rejectWithValue(error.message);
    }
 })
 
@@ -62,7 +49,7 @@ export const authSlice = createSlice({
          }
       });
       builder.addCase(register.rejected, (state, action) => {
-         console.log('rejected register auth')
+         console.log(action.error.message + ' >> at register auth')
       })
       /* login */
       builder.addCase(login.fulfilled, (state, action) => {
@@ -76,7 +63,7 @@ export const authSlice = createSlice({
          }
       })
       builder.addCase(login.rejected, (state, action) => {
-         console.log('rejected login auth')
+         console.log(action.error.message + ' >> at login auth')
       })
    }
 })
