@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { PageNumber } from '../../../conponentItems'
+import { PageNumber } from '../../../conponentItems/Public'
 import { useSelector } from 'react-redux'
 import icons from '../../../utils/icons'
 import { useSearchParams } from 'react-router-dom'
@@ -25,7 +25,7 @@ const Pagination = () => {
    useEffect(() => {
       let maxPage = Math.ceil(count / lengthPage)
       let end = (currentPage + 2) > maxPage ? maxPage : (currentPage + 2);
-      let start = (currentPage - 2) <= 0 ? 1 : (currentPage - 2);
+      let start = (currentPage - 2) <= 1 ? 1 : (currentPage - 2);
       let temp = []
       for (let i = start; i <= end; i++) {
          temp.push(i)
@@ -42,7 +42,7 @@ const Pagination = () => {
             setCurrentPage={setCurrentPage}
             text={1}
          />}
-         {!isHideStart && <PageNumber text='...' />}
+         {(!isHideStart && currentPage !== 4) && <PageNumber text='...' />}
          {arrPage.length > 0 &&
             arrPage.map(item => (
                <PageNumber key={item} text={item}
@@ -53,7 +53,7 @@ const Pagination = () => {
          {!isHideEnd && <PageNumber
             icon={<MdOutlineLastPage size={18} />}
             setCurrentPage={setCurrentPage}
-            text={Math.floor(count / lengthPage) + 1}
+            text={Math.floor(count / lengthPage)}
          />}
       </div>
    )

@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import logo from '../../../assets/logo.png';
-import { Button } from '../../../conponentItems'
+import { Button, User } from '../../../conponentItems/Public'
 import icons from '../../../utils/icons.js'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { path } from '../../../utils/constant.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { resetAuth } from '../../../features/authSlice';
+import { resetCurrentUser } from '../../../features/userSlice'
+import { menuManager } from '../../../utils/constant'
 
-const { PiPlusCircle } = icons
+const { PiPlusCircle, CiLogout, RxDashboard } = icons
 
 const Header = () => {
    const navigate = useNavigate();
@@ -16,6 +18,8 @@ const Header = () => {
    const [searchParams] = useSearchParams()
    let page = searchParams.get('page')
    const { isLoggedIn } = useSelector(state => state.auth)
+   const { currentUser, refreshToken } = useSelector(state => state.user)
+   const [isShowMenu, setIsShowMenu] = useState(false)
 
    /* */
    const goLogin = useCallback((flag) => {
@@ -24,7 +28,14 @@ const Header = () => {
 
    const goLogout = useCallback(() => {
       dispatch(resetAuth())
+      dispatch(resetCurrentUser())
    }, [dispatch])
+
+   useEffect(() => {
+      if (refreshToken) {
+         goLogout()
+      }
+   }, [refreshToken, goLogout])
 
    /* move view to start component */
    useEffect(() => {
@@ -39,7 +50,7 @@ const Header = () => {
          </Link>
          <div>
             {!isLoggedIn ?
-               <div className='flex items-center gap-1'>
+               <div className='flex items-center gap-2'>
                   <small>Phongtro123.com xin chào!</small>
                   <Button text='Đăng nhập'
                      textColor='text-white'
@@ -60,19 +71,41 @@ const Header = () => {
                      IcAfter={PiPlusCircle}
                   />
                </div> :
-               <div className='flex items-center gap-1'>
-                  <small>Phongtro123.com xin chào!</small>
-                  <Button text='Đăng xuất'
-                     textColor='text-white'
-                     bgColor='bg-bg_blue2'
-                     fontSize={'text-[15px]'}
-                     onClick={goLogout}
-                  />
+               <div className='flex items-center gap-2'>
+                  {currentUser && <User />}
+                  <div className='relative'>
+                     <Button text='Quản lý tài khoản'
+                        IcBefore={RxDashboard}
+                        textColor='text-color_333'
+                        fontSize={'text-[15px]'}
+                        onClick={() => setIsShowMenu(prev => !prev)}
+                     />
+                     {isShowMenu &&
+                        <div className='absolute min-w-200 top-full left-0 bg-white shadow-md rounded-md
+                           flex flex-col px-4 py-3 text-color_blue'>
+                           {menuManager?.map(item => (
+                              <Link className='flex items-center gap-2 border-b py-[10px]
+                               border-default hover:text-color_red'
+                                 key={item.id} to={item.path}>
+                                 {item?.icon}
+                                 {item.text}
+                              </Link>
+                           ))}
+                           <span className='flex items-center gap-2 pt-2 cursor-pointer hover:text-color_red'
+                              onClick={() => {
+                                 goLogout();
+                                 setIsShowMenu(false)
+                              }}>
+                              <CiLogout />
+                              Đăng xuất
+                           </span>
+                        </div>}
+                  </div>
                   <Button text='Đăng tin mới'
+                     fontSize={'text-[15px]'}
                      textColor='text-white'
                      bgColor='bg-bg_red'
                      IcAfter={PiPlusCircle}
-                     fontSize={'text-[15px]'}
                   />
                </div>
             }

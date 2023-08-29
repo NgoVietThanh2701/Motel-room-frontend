@@ -1,25 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './common/Header';
 import { Outlet } from 'react-router-dom';
 import { Contact, Intro, Navigation, Search } from './index';
-import { useDispatch } from 'react-redux';
-import { getAreas, getPrices, getProvinces } from '../../features/appSlice'
+import { useSelector } from 'react-redux';
 
 const Home = () => {
 
-   const dispatch = useDispatch()
+   const { isLoggedIn } = useSelector(state => state.auth)
 
-   useEffect(() => {
-      dispatch(getPrices())
-      dispatch(getAreas())
-      dispatch(getProvinces())
-   }, [dispatch])
    return (
       <div className='w-full flex flex-col items-center h-full'>
          <Header />
          <Navigation />
-         <Search />
-         <div className="w-5/7 mt-[10px] flex flex-col">
+         {isLoggedIn && <Search />}
+         <div className="w-5/7 mt-[10px] flex flex-col items-center">
             <Outlet />
          </div>
          <Intro />

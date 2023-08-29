@@ -1,8 +1,8 @@
 import React, { memo, useState } from 'react'
-import icons from '../utils/icons'
-import avatarDefault from '../assets/avatar-default.jpg'
+import icons from '../../utils/icons'
+import avatarDefault from '../../assets/avatar-default.jpeg'
 import { Link } from 'react-router-dom'
-import { convertStringtoURL } from '../utils/function'
+import { convertStringtoURL } from '../../utils/function'
 
 const { BsHeart, BsHeartFill, FaStar } = icons
 

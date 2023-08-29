@@ -1,7 +1,7 @@
 import React from 'react'
 import { introMotel } from '../../../utils/constant'
 import icons from '../../../utils/icons'
-import { Button } from '../../../conponentItems'
+import { Button } from '../../../conponentItems/Public'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { convertStringtoURL } from '../../../utils/function'

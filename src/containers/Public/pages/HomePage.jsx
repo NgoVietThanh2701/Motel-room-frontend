@@ -1,7 +1,7 @@
 import React from 'react'
 import { infoMotel } from '../../../utils/constant'
 import { Province, ListPost, Pagination, RelatedPost } from '../index'
-import { ItemSidebar } from '../../../conponentItems'
+import { ItemSidebar } from '../../../conponentItems/Public'
 import { useSelector } from 'react-redux'
 
 const HomePage = () => {

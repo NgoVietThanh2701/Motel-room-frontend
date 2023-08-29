@@ -1,6 +1,6 @@
 import React from 'react'
 import { contactMotel } from '../../../utils/constant'
-import { Button } from '../../../conponentItems'
+import { Button } from '../../../conponentItems/Public'
 
 const Contact = () => {
    return (

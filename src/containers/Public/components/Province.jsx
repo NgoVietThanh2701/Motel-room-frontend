@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProvinceBtn } from '../../../conponentItems'
+import { ProvinceBtn } from '../../../conponentItems/Public'
 import { localtionCity } from '../../../utils/constant'
 
 const Province = () => {

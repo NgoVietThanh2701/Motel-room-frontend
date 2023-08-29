@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, ItemPost } from '../../../conponentItems'
+import { Button, ItemPost } from '../../../conponentItems/Public'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsLimit } from '../../../features/postSlice'
 import { useSearchParams } from 'react-router-dom'
@@ -16,9 +16,13 @@ const ListPost = ({ categoryCode }) => {
          params.push(entry)
       }
       let searchParamsObj = {}
-      params?.map(i => (
-         searchParamsObj = { ...searchParamsObj, [i[0]]: i[1] }
-      ))
+      params?.forEach(i => {
+         if (Object.keys(searchParamsObj)?.some(item => item === i[0])) {
+            searchParamsObj[i[0]] = [...searchParamsObj[i[0]], i[1]]
+         } else {
+            searchParamsObj = { ...searchParamsObj, [i[0]]: [i[1]] }
+         }
+      })
       if (categoryCode) {
          searchParamsObj.categoryCode = categoryCode
       }

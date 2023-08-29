@@ -8,6 +8,8 @@ export const action = {
    POST_GET: 'posts/get',
    POST_GET_LIMIT: 'posts/getLimit',
    POST_GET_NEW: 'posts/getNew',
+   /* user */
+   USER_GET_CURRENT: 'user/getCurrent'
 }
 
 

@@ -6,6 +6,7 @@ import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import thunk from "redux-thunk";
 import postReducer from '../features/postSlice'
 import appReducer from '../features/appSlice'
+import userReducer from '../features/userSlice'
 
 const rootReducer = combineReducers({
    auth: persistReducer({
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
       whitelist: ['isLoggedIn', 'token']
    }, authReducer),
    post: postReducer,
-   app: appReducer
+   app: appReducer,
+   user: userReducer
 })
 
 export const store = configureStore({

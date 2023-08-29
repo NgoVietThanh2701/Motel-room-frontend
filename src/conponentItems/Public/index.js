@@ -7,10 +7,10 @@ import PageNumber from "./PageNumber";
 import ItemSidebar from "./ItemSidebar";
 import SimpleItemPost from "./SimpleItemPost";
 import Modal from "./Modal";
-
+import User from "./User";
 
 export {
-   ItemSidebar, PageNumber,
+   ItemSidebar, PageNumber, User,
    ItemPost, Button, InputForm, SearchItem,
    ProvinceBtn, SimpleItemPost, Modal
 }

@@ -65,7 +65,7 @@ export const postSlice = createSlice({
          }
       })
       builder.addCase(getPostsLimit.rejected, (state, action) => {
-         console.log(action.error.message + 'at get postLimit')
+         console.log(action.error.message + ' >> at get postLimit')
       })
       /* get new posts */
       builder.addCase(getPostsNew.fulfilled, (state, action) => {
@@ -77,7 +77,7 @@ export const postSlice = createSlice({
          }
       })
       builder.addCase(getPostsNew.rejected, (state, action) => {
-         console.log(action.error.message + 'at get new post')
+         console.log(action.error.message + '>> at get new post')
       })
    }
 })

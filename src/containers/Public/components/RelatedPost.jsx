@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { SimpleItemPost } from '../../../conponentItems'
+import { SimpleItemPost } from '../../../conponentItems/Public'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsNew } from '../../../features/postSlice'
 

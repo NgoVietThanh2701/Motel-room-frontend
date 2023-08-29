@@ -1,12 +1,68 @@
+import icons from "./icons"
+
+const { MdOutlineContactSupport, HiOutlinePencilSquare, PiClipboardTextLight, SlUserFollowing } = icons
+
 export const path = {
-   HOME: '/*',
+   HOME: '/*', /* have '/' will move route to root domain */
    LOGIN: 'login',
    CHO_THUE_CAN_HO: 'cho-thue-can-ho',
    CHO_THUE_MAT_BANG: 'cho-thue-mat-bang',
    NHA_CHO_THUE: 'nha-cho-thue',
    CHO_THUE_PHONG_TRO: 'cho-thue-phong-tro',
-   DETAIL_POST_TITLE_POSTID: 'chi-tiet/:title/:postId'
+   DETAIL_POST_TITLE_POSTID: 'chi-tiet/:title/:postId',
+   SEARCH: 'tim-kiem',
+   /* administrator */
+   SYSTEM: '/he-thong/*',
+   CREATE_POST: 'tao-moi-bai-dang'
 }
+
+export const menuSidebar = [
+   {
+      id: 1,
+      text: 'Đăng tin cho thuê',
+      path: '/he-thong/tao-moi-bai-dang',
+      icon: <HiOutlinePencilSquare color="" size={17} />
+   },
+   {
+      id: 2,
+      text: 'Quản lý tin đăng',
+      path: '/he-thong/quan-ly-bai-dang',
+      icon: <PiClipboardTextLight size={17} />
+   },
+   {
+      id: 3,
+      text: 'Sửa thông tin cá nhân',
+      path: '/he-thong/sua-thong-tin-ca-nhan',
+      icon: <SlUserFollowing size={15} />
+   },
+   {
+      id: 4,
+      text: 'Liên hệ',
+      path: '/he-thong/lien-he',
+      icon: <MdOutlineContactSupport size={19} className="mt-[2px]" />
+   }
+]
+
+export const menuManager = [
+   {
+      id: 1,
+      text: 'Đăng tin cho thuê',
+      path: '/he-thong/tao-moi-bai-dang',
+      icon: <HiOutlinePencilSquare color="" size={17} />
+   },
+   {
+      id: 2,
+      text: 'Quản lý tin đăng',
+      path: '/he-thong/quan-ly-bai-dang',
+      icon: <PiClipboardTextLight size={17} />
+   },
+   {
+      id: 3,
+      text: 'Thông tin tài khoản',
+      path: '/he-thong/thong-tin-tai-khoan',
+      icon: <SlUserFollowing size={15} />
+   },
+]
 
 export const infoMotel = {
    HOME_TITLE: 'Kênh thông tin Phòng Trọ số 1 Việt Nam',

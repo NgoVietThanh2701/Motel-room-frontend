@@ -13,6 +13,9 @@ module.exports = {
       maxWidth: {
         '600': '600px',
       },
+      minWidth: {
+        '200': '200px'
+      },
       backgroundColor: {
         bg_primary: '#F5F5F5', // background root
         bg_input: '#e8f0fe', // background input
@@ -20,6 +23,7 @@ module.exports = {
         bg_blue2: '#0071c2', //  btn blue
         bg_red: '#f73859', //  btn red
         bg_yellow: '#febb02',
+        bg_green: '#16c784',
         bg_overlay60: 'rgba(0, 0, 0, 0.6)',
       },
       textColor: {
@@ -42,7 +46,8 @@ module.exports = {
         95: '0.95'
       },
       borderColor: {
-        default: '#dedede'
+        default: '#dedede',
+        'bbb': '#bbb'
       }
     },
   },

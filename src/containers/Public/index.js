@@ -12,10 +12,10 @@ import DetailPost from "./pages/DetailPost";
 import Contact from "./common/Contact";
 import Intro from "./common/Intro";
 import RelatedPost from "./components/RelatedPost";
-
+import SearchDetail from "./pages/SearchDetail";
 
 export {
    Home, Header, Login, Navigation, Rental, HomePage,
    Search, Province, ListPost, Pagination, DetailPost,
-   Contact, Intro, RelatedPost
+   Contact, Intro, RelatedPost, SearchDetail
 }

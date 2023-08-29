@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, InputForm } from '../../../conponentItems';
+import { Button, InputForm } from '../../../conponentItems/Public';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, login } from '../../../features/authSlice';
@@ -43,7 +43,9 @@ const Login = () => {
       }
       let invalids = validate(finalPayload);
       if (invalids === 0) {
-         isRegister ? dispatch(register(finalPayload)) : dispatch(login(finalPayload))
+         isRegister
+            ? dispatch(register(finalPayload))
+            : dispatch(login(finalPayload))
       }
    }
    /* validation form */
@@ -88,7 +90,7 @@ const Login = () => {
    }
 
    return (
-      <div className='bg-white w-[600px] p-[30px] pb-[100px] rounded-sm shadow-sm'>
+      <div className='bg-white w-[600px] mt-6 p-[30px] pb-[100px] rounded-sm shadow-sm'>
          <h3 className='font-bold text-3xl mb-3 text-color_222'>{isRegister ? 'Đăng ký tài khoản' : 'Đăng nhập'}</h3>
          <div className='w-full flex flex-col gap-4'>
             {isRegister &&

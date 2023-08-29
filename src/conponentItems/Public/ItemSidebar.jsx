@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import icons from '../utils/icons'
-import { convertStringtoURL } from '../utils/function'
+import icons from '../../utils/icons'
+import { convertStringtoURL } from '../../utils/function'
 import { Link, createSearchParams, useLocation, useNavigate } from 'react-router-dom'
 
 const { BsChevronRight } = icons
@@ -39,7 +39,7 @@ const ItemSidebar = ({ title, content, isDouble, type }) => {
          {isDouble &&
             <div className='mt-3 flex flex-col gap-1'>
                {content?.length > 0 &&
-                  content.map((val, index) => {
+                  content.map((__, index) => {
                      if (index % 2 === 0) {
                         return (
                            <div key={index} className='flex items-center'>

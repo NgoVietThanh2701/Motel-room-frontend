@@ -8,6 +8,10 @@ instance.interceptors.request.use(function (config) {
    /* Do something before is request sent */
    /* Add token in header */
    const token = localStorage.getItem('persist:auth')
+      && JSON.parse(localStorage.getItem('persist:auth'))?.token?.slice(1, -1)
+   config.headers = {
+      authorization: `Bearer ${token}`
+   }
    return config;
 }, function (error) {
    /* Do something with request error */
