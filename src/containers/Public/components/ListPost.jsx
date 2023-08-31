@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Button, ItemPost } from '../../../conponentItems/Public'
+import React, { useEffect, useState } from 'react'
+import { ItemPost } from '../../../conponentItems/Public'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsLimit } from '../../../features/postSlice'
 import { useSearchParams } from 'react-router-dom'
@@ -9,6 +9,7 @@ const ListPost = ({ categoryCode }) => {
    const [searchParams] = useSearchParams()
    const dispatch = useDispatch()
    const { posts, count } = useSelector(state => state.post)
+   const [sort, setSort] = useState(false)
 
    useEffect(() => {
       let params = []
@@ -35,10 +36,11 @@ const ListPost = ({ categoryCode }) => {
             {count} tin cho thuê tại Phongtro123.com
          </h4>
          <div className='px-4 flex items-center gap-[5px]'>
-            <span className='text-[14px]'>Sắp xếp:</span>
-            <Button fontSize='text-[12.5px]' bgColor='bg-gray-200' text='Sắp Mặc định' />
-            <Button fontSize='text-[12.5px]' bgColor='bg-gray-200' text='Mới nhất' />
-            <Button fontSize='text-[12.5px]' bgColor='bg-gray-200' text='Có video' />
+            <span className='text-[14px] mr-3'>Sắp xếp:</span>
+            <span className={`text-sm p-2 rounded-md cursor-pointer hover:text-color_red
+             hover:underline bg-gray-200 ${!sort && 'underline text-color_red'} `}>Mặc định</span>
+            <span className={`text-sm p-2 rounded-md cursor-pointer hover:text-color_red
+             hover:underline bg-gray-200 ${sort && 'underline'}`}>Mới nhất</span>
          </div>
          <div className='items'>
             {posts?.length > 0 && posts.map((item, index) => (

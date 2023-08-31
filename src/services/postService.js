@@ -51,4 +51,31 @@ export const apiCreatePost = (payload) => new Promise(async (resolve, rejcet) =>
    }
 })
 
+export const apiGetPostsLimitAdmin = (query) => new Promise(async (resolve, rejcet) => {
+   try {
+      const response = await axiosConfig({
+         method: 'GET',
+         url: `/api/v1/post/limit-admin`,
+         params: query
+      })
+      resolve(response)
+   } catch (error) {
+      rejcet(error)
+   }
+})
+
+export const apiDeletePostsLimitAdmin = (postId) => new Promise(async (resolve, rejcet) => {
+   try {
+      const response = await axiosConfig({
+         method: 'delete',
+         url: `/api/v1/post/delete`,
+         params: { postId }
+      })
+      resolve(response)
+   } catch (error) {
+      rejcet(error)
+   }
+})
+
+
 

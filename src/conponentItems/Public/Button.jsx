@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-const Button = ({ text, bgColor = 'bg-white', font = 'font-normal', textColor = 'text-color_222', fontSize = 16, onClick, IcBefore, IcAfter, fullWidth, px = 'px-[10px]' }) => {
+const Button = ({ text, bgColor = 'bg-bg_primary', font = 'font-normal', textColor = 'text-color_222', fontSize = 16, onClick, IcBefore, IcAfter, fullWidth, px = 'px-[10px]' }) => {
    return (
       <button className={`py-2 ${px} ${bgColor} ${textColor} ${font}
        outline-none rounded-[5px] hover:underline flex items-center justify-center gap-[3px]

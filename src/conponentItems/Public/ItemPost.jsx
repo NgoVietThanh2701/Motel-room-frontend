@@ -51,14 +51,17 @@ const Item = ({ user, title, star, description, attributes, address, image, coun
                   <p className='text-gray_2 text-sm font-medium'>{user.name}</p>
                </div>
                <div className='flex items-center gap-1'>
-                  <button type='button' className='text-white text-sm bg-bg_blue1 
-                     rounded-[5px] px-[7px] py-[2px]'>
+                  <a type='button' className='text-white text-sm bg-bg_blue1 
+                     rounded-[5px] px-[7px] py-[2px]'
+                     href='/'>
                      Gọi {user?.phone}
-                  </button>
-                  <button type='button' className='border text-sm text-blue-900 border-blue-900 
-                     rounded-[5px] px-[7px] py-[2px]'>
+                  </a>
+                  <a type='button' className='border text-sm text-blue-900 border-blue-900 
+                     rounded-[5px] px-[7px] py-[2px]'
+                     href={`https://zalo.me/${user.zalo}`}
+                     target='_blank'>
                      Nhắn Zalo
-                  </button>
+                  </a>
                </div>
             </div>
          </div>

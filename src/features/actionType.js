@@ -9,7 +9,9 @@ export const action = {
    POST_GET_LIMIT: 'posts/getLimit',
    POST_GET_NEW: 'posts/getNew',
    /* user */
-   USER_GET_CURRENT: 'user/getCurrent'
+   USER_GET_CURRENT: 'user/getCurrent',
+   /* admin */
+   POST_GET_ADMIN: 'posts/getLimitAdmin'
 }
 
 

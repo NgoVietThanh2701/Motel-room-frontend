@@ -18,8 +18,8 @@ const Pagination = () => {
 
    useEffect(() => {
       const page = searchParams.get('page');
-      !page ? setCurrentPage(1) :
-         (+page !== currentPage && setCurrentPage(+page))
+      page && +page !== currentPage && setCurrentPage(+page)
+      !page && setCurrentPage(1)
    }, [searchParams, currentPage])
 
    useEffect(() => {
@@ -31,7 +31,7 @@ const Pagination = () => {
          temp.push(i)
       }
       setArrPage(temp)
-      currentPage >= maxPage - 2 ? setIsHideEnd(true) : setIsHideEnd(false)
+      currentPage >= (maxPage - 2) ? setIsHideEnd(true) : setIsHideEnd(false)
       currentPage <= 3 ? setIsHideStart(true) : setIsHideStart(false)
    }, [currentPage, count, lengthPage])
 
@@ -53,7 +53,7 @@ const Pagination = () => {
          {!isHideEnd && <PageNumber
             icon={<MdOutlineLastPage size={18} />}
             setCurrentPage={setCurrentPage}
-            text={Math.floor(count / lengthPage)}
+            text={Math.ceil(count / lengthPage)}
          />}
       </div>
    )

@@ -102,7 +102,7 @@ const CreatePost = () => {
             trong mục QUẢN LÝ TIN ĐĂNG để làm mới, đẩy tin lên cao thay vì đăng tin mới. Tin đăng trùng nhau sẽ không được duyệt.
          </p>
          <div className='flex gap-8'>
-            <div className='flex-auto py-4'>
+            <div className='flex-auto py-4 mb-[100px]'>
                <Address setPayload={setPayload} />
                <Overview payload={payload} setPayload={setPayload} />
                <div className='my-8'>
@@ -140,8 +140,8 @@ const CreatePost = () => {
                      textColor='text-white' /> :
                   <Loading />}
             </div>
-            <div className='w-[38%] min-w-[38%]'>
-               map
+            <div className='w-[30%] min-w-[30%]'>
+
             </div>
          </div>
       </div>

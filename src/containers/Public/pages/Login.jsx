@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, login } from '../../../features/authSlice';
 import Swal from 'sweetalert2';
+import validate from '../../../utils/validateFields';
 
 const Login = () => {
 
@@ -41,53 +42,14 @@ const Login = () => {
          phone: payload.phone,
          password: payload.password
       }
-      let invalids = validate(finalPayload);
+      let invalids = validate(finalPayload, setInvalidFields);
       if (invalids === 0) {
          isRegister
             ? dispatch(register(finalPayload))
             : dispatch(login(finalPayload))
       }
    }
-   /* validation form */
-   const validate = (payload) => {
-      let invalidCount = 0
-      /* Convert object -> array*/
-      let fields = Object.entries(payload)
-      fields.forEach(item => {
-         if (item[1] === '') {
-            setInvalidFields(prev => [...prev, {
-               name: item[0],
-               message: "Bạn không được bỏ trống trường này !"
-            }])
-            invalidCount++
-         }
-         switch (item[0]) {
-            case 'password':
-               if (item[1].length < 6) {
-                  setInvalidFields(prev => [...prev, {
-                     name: item[0],
-                     message: 'Mật khẩu có tối thiểu 6 kí tự !'
-                  }])
 
-                  invalidCount++
-               }
-               break;
-            case 'phone':
-               let regex = /^(?:\+?84|0)[1-9]\d{4}$/;
-               if (!regex.test(item[1])) {
-                  setInvalidFields(prev => [...prev, {
-                     name: item[0],
-                     message: 'Số điện thoại bắt đầu với 0 và có 6 chữ số !'
-                  }])
-                  invalidCount++
-               }
-               break;
-            default:
-               break;
-         }
-      })
-      return invalidCount
-   }
 
    return (
       <div className='bg-white w-[600px] mt-6 p-[30px] pb-[100px] rounded-sm shadow-sm'>

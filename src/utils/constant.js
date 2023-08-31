@@ -13,7 +13,8 @@ export const path = {
    SEARCH: 'tim-kiem',
    /* administrator */
    SYSTEM: '/he-thong/*',
-   CREATE_POST: 'tao-moi-bai-dang'
+   CREATE_POST: 'tao-moi-bai-dang',
+   MANAGE_POST: 'quan-ly-bai-dang'
 }
 
 export const menuSidebar = [
@@ -129,14 +130,17 @@ export const contactMotel = {
 export const localtionCity = [
    {
       name: 'Phòng trọ Hồ Chí Minh',
-      image: 'https://phongtro123.com/images/location_hcm.jpg'
+      image: 'https://phongtro123.com/images/location_hcm.jpg',
+      provinceCode: 'CHMN'
    },
    {
       name: 'Phòng trọ Hà Nội',
-      image: 'https://phongtro123.com/images/location_hn.jpg'
+      image: 'https://phongtro123.com/images/location_hn.jpg',
+      provinceCode: 'NNIT'
    },
    {
       name: 'Phòng trọ Đà Nẵng',
-      image: 'https://phongtro123.com/images/location_dn.jpg'
+      image: 'https://phongtro123.com/images/location_dn.jpg',
+      provinceCode: 'NONG'
    }
 ]

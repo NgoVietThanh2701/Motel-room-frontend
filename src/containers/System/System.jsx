@@ -14,11 +14,11 @@ const System = () => {
    }
 
    return (
-      <div className='min-h-screen flex flex-col items-center'>
+      <div className='w-full h-screen overflow-hidden flex flex-col items-center'>
          <Header />
-         <div className='flex w-full'>
+         <div className='flex h-full w-full flex-auto'>
             <SideBar />
-            <div className='flex-auto bg-white border border-default p-4'>
+            <div className='flex-auto h-full bg-white p-4 overflow-y-scroll'>
                <Outlet />
             </div>
          </div>

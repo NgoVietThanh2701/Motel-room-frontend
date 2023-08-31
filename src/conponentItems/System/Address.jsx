@@ -36,7 +36,7 @@ const Address = ({ setPayload }) => {
    useEffect(() => {
       setPayload(prev => ({
          ...prev,
-         address: `${district ? `${districts.find(item => item.district_id === district)?.district_name},` : ''} ${province
+         address: `${district ? `${districts.find(item => item.district_id === district)?.district_name},` : ''}${province
             ? `${provinces.find(item => item.province_id === province)?.province_name}` : ''}`,
          province: province
             ? provinces.find(item => item.province_id === province)?.province_name : ''
