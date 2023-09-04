@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
       storage,
       stateReconciler: autoMergeLevel2,
       key: 'auth',
-      whitelist: ['isLoggedIn', 'token']
+      whitelist: ['isLoggedIn', 'token', 'refresh_token']
    }, authReducer),
    post: postReducer,
    app: appReducer,

@@ -1,6 +1,7 @@
 export const action = {
    AUTH_LOGIN: 'auth/login',
    AUTH_REGISTER: 'auth/register',
+   AUTH_REFRESH_TOKEN: 'auth/refresh',
    APP_GET_CATEGORIES: 'app/getCategories',
    APP_GET_PRICES: 'app/getPrices',
    APP_GET_AREAS: 'app/getAreas',

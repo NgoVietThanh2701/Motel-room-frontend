@@ -4,7 +4,7 @@ import { apiGetCurrentUser } from "../services/userService"
 
 const initStateUser = {
    currentUser: {},
-   refreshToken: false,
+   refreshUser: false,
    msg: '',
 }
 
@@ -30,11 +30,12 @@ export const userSlice = createSlice({
             state.msg = action.payload.msg
          } else {
             state.msg = action.payload.msg
+            //state.refreshUser = true
          }
       })
       builder.addCase(getCurrentUser.rejected, (state, action) => {
+         //state.refreshUser = true
          console.log(action.error.message + ' >> at get current user')
-         state.refreshToken = true
       })
    }
 })

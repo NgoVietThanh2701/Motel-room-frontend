@@ -13,12 +13,13 @@ function App() {
 
    const dispatch = useDispatch()
    const { isLoggedIn } = useSelector(state => state.auth)
+   const { refreshUser } = useSelector(state => state.user)
 
    useEffect(() => {
       setTimeout(() => {
          isLoggedIn && dispatch(getCurrentUser())
-      }, 800);
-   }, [isLoggedIn, dispatch])
+      }, 700);
+   }, [isLoggedIn, dispatch, refreshUser])
 
    useEffect(() => {
       dispatch(getPrices())

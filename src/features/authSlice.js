@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { action } from './actionType'
-import { apiRegister, apiLogin } from "../services/authService";
+import { apiRegister, apiLogin, apiRefresh } from "../services/authService";
 
 const initState = {
    isLoggedIn: false,
    token: null,
+   refresh_token: null,
+   refresh_expired: false,
    msg: "",
-   update: false
+   update: false,
 }
 
 export const register = createAsyncThunk(action.AUTH_REGISTER, async (dataRegistry, thunkAPI) => {
@@ -22,6 +24,15 @@ export const register = createAsyncThunk(action.AUTH_REGISTER, async (dataRegist
 export const login = createAsyncThunk(action.AUTH_LOGIN, async (dataLogin, thunkAPI) => {
    try {
       const response = await apiLogin(dataLogin)
+      return response.data
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+   }
+})
+
+export const refreshTokenFunc = createAsyncThunk(action.AUTH_REFRESH_TOKEN, async (refreshToken, thunkAPI) => {
+   try {
+      const response = await apiRefresh(refreshToken)
       return response.data
    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -46,6 +57,7 @@ export const authSlice = createSlice({
          } else {
             state.isLoggedIn = true;
             state.token = action.payload.token
+            state.refresh_token = action.payload.refreshToken
          }
       });
       builder.addCase(register.rejected, (state, action) => {
@@ -60,10 +72,25 @@ export const authSlice = createSlice({
          } else {
             state.isLoggedIn = true;
             state.token = action.payload.token
+            state.refresh_token = action.payload.refreshToken
          }
       })
       builder.addCase(login.rejected, (state, action) => {
          console.log(action.error.message + ' >> at login auth')
+      })
+      /* refresh */
+      builder.addCase(refreshTokenFunc.fulfilled, (state, action) => {
+         if (!action.payload.err) {
+            state.token = action.payload.token
+            state.isLoggedIn = true
+         } else {
+            state.isLoggedIn = false
+            state.msg = action.payload.msg
+         }
+      })
+      builder.addCase(refreshTokenFunc.rejected, (state, action) => {
+         state.refresh_expired = true
+         console.log(action.error.message + ' >> at refresh token')
       })
    }
 })

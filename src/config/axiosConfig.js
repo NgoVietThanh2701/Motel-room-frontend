@@ -1,10 +1,11 @@
 import axios from "axios";
+import { apiRefresh } from "../services/authService";
 
 const instance = axios.create({
    baseURL: process.env.REACT_APP_SERVER_URL
 })
 
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(async function (config) {
    /* Do something before is request sent */
    /* Add token in header */
    const token = localStorage.getItem('persist:auth')

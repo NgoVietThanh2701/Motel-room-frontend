@@ -17,8 +17,8 @@ const Header = () => {
    const headerRef = useRef()
    const [searchParams] = useSearchParams()
    let page = searchParams.get('page')
-   const { isLoggedIn } = useSelector(state => state.auth)
-   const { currentUser, refreshToken } = useSelector(state => state.user)
+   const { isLoggedIn, refresh_token, refresh_expired } = useSelector(state => state.auth)
+   const { currentUser, refreshUser } = useSelector(state => state.user)
    const [isShowMenu, setIsShowMenu] = useState(false)
 
    /* */
@@ -32,10 +32,16 @@ const Header = () => {
    }, [dispatch])
 
    useEffect(() => {
-      if (refreshToken) {
+      if (refresh_expired) {
          goLogout()
       }
-   }, [refreshToken, goLogout])
+   }, [refresh_expired])
+
+   // useEffect(() => {
+   //    if (refreshUser) {
+   //       dispatch(refreshToken(refresh_token))
+   //    }
+   // }, [refreshUser, dispatch, refresh_token])
 
    /* move view to start component */
    useEffect(() => {
